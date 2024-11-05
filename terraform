@@ -1,0 +1,15 @@
+provider "aws" {
+  region = "us-east-2"
+}
+
+resource "aws_instance" "amazon-linux" {
+  count                  = 1
+  ami                    = "ami-0aa8fc2422063977a"
+  instance_type          = "t2.micro"
+  key_name               = "newkeypair"
+  vpc_security_group_ids = [aws_security_group.default.id]
+  tags = {
+    Name = "aws_instances"
+  }
+}
+
